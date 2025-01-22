@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqoiyhi1wi03m"]
+
+[ext_resource type="Texture2D" uid="uid://tln20cri5704" path="res://icon.svg" id="1_ap4g2"]
+[ext_resource type="Script" path="res://demo/scripts/hello.gd" id="1_kkgf0"]
+
+[node name="Hello" type="Node"]
+script = ExtResource("1_kkgf0")
+
+[node name="GDExample" type="GDExample" parent="."]
+speed = 4.06
+position = Vector2(59.9024, 0.546697)
+texture = ExtResource("1_ap4g2")
+centered = false
+
+[connection signal="position_changed" from="GDExample" to="." method="_on_gd_example_position_changed"]
+[connection signal="ready" from="GDExample" to="." method="_on_gd_example_ready"]
