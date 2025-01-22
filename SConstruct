@@ -19,7 +19,7 @@ env.Append(CPPPATH=["src/gdexample", "src/navmesh_test"])
 def get_library(name, sources):
     if env["platform"] == "macos":
         library = env.SharedLibrary(
-            f"game/gdextensions/{name}/bin/lib{name}.{env["platform"]}.{env["target"]}.framework/libgdexample.{env["platform"]}.{env["target"]}",
+            f"game/gdextensions/{name}/bin/lib{name}.{env["platform"]}.{env["target"]}.framework/lib{name}.{env["platform"]}.{env["target"]}",
             source=sources,
         )
     elif env["platform"] == "ios":

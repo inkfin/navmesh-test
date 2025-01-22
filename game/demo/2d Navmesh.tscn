@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgedxwqq8hqp0"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_px8xk"]
+
+[node name="2dNavmesh" type="Node2D"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("ArrayMesh_px8xk")

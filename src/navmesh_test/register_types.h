@@ -5,8 +5,8 @@
 
 namespace godot {
 
-void initialize_example_module(ModuleInitializationLevel p_level);
-void uninitialize_example_module(ModuleInitializationLevel p_level);
+void initialize_navmesh_test_module(ModuleInitializationLevel p_level);
+void uninitialize_navmesh_test_module(ModuleInitializationLevel p_level);
 
 }
 
