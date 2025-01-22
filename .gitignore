@@ -10,6 +10,7 @@ extension_api.json
 compile_commands.json
 
 # GDExtension Compile
-game/bin/
-*.os
+game/gdextensions/**/bin/
+src/**/*.os
+src/**/*.obj
 *.dblite

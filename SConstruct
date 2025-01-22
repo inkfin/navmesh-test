@@ -13,33 +13,39 @@ env = SConscript("godot-cpp/SConstruct")
 # - LINKFLAGS are for linking flags
 
 # tweak this if you want to use different folders, or more folders, to store your source code in.
-env.Append(CPPPATH=["src/"])
-sources = Glob("src/*.cpp")
+env.Append(CPPPATH=["src/gdexample", "src/navmesh_test"])
 
-if env["platform"] == "macos":
-    library = env.SharedLibrary(
-        "game/bin/libgdexample.{}.{}.framework/libgdexample.{}.{}".format(
-            env["platform"], env["target"], env["platform"], env["target"]
-        ),
-        source=sources,
-    )
-elif env["platform"] == "ios":
-    if env["ios_simulator"]:
-        library = env.StaticLibrary(
-            "game/bin/libgdexample.{}.{}.simulator.a".format(
-                env["platform"], env["target"]
-            ),
+
+def get_library(name, sources):
+    if env["platform"] == "macos":
+        library = env.SharedLibrary(
+            f"game/gdextensions/{name}/bin/lib{name}.{env["platform"]}.{env["target"]}.framework/libgdexample.{env["platform"]}.{env["target"]}",
             source=sources,
         )
+    elif env["platform"] == "ios":
+        if env["ios_simulator"]:
+            library = env.StaticLibrary(
+                f"game/gdextensions/{name}/bin/lib{name}.{env["platform"]}.{env["target"]}.simulator.a",
+                source=sources,
+            )
+        else:
+            library = env.StaticLibrary(
+                f"game/gdextensions/{name}/bin/lib{name}.{env["platform"]}.{env["target"]}.a",
+                source=sources,
+            )
     else:
-        library = env.StaticLibrary(
-            "game/bin/libgdexample.{}.{}.a".format(env["platform"], env["target"]),
+        library = env.SharedLibrary(
+            f"game/gdextensions/{name}/bin/lib{name}{env["suffix"]}{env["SHLIBSUFFIX"]}",
             source=sources,
         )
-else:
-    library = env.SharedLibrary(
-        "game/bin/libgdexample{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
-        source=sources,
-    )
+    return library
 
-Default(library)
+
+
+src_gdexample = Glob("src/gdexample/*.cpp")
+src_navmesh_test = Glob("src/navmesh_test/*.cpp")
+
+libgdexample = get_library("gdexample", src_gdexample)
+libnavmesh_test = get_library("navmesh_test", src_navmesh_test)
+
+Default(libgdexample, libnavmesh_test)
