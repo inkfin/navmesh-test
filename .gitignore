@@ -1,6 +1,15 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+.cache/
+extension_api.json
 
 .DS_Store
 
+.clangd
+compile_commands.json
+
+# GDExtension Compile
+game/bin/
+*.os
+*.dblite
