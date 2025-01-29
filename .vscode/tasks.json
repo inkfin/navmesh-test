@@ -14,15 +14,18 @@
             "osx": {
                 "args": [
                     "platform=macos",
-                    "compiledb=yes"
+                    "compiledb=yes",
+                    "dev_build=yes",
                 ],
             },
             "windows": {
                 "args": [
                     "platform=windows",
-                    "compiledb=yes"
+                    "compiledb=yes",
+                    "dev_build=yes",
                 ],
-            }
+                "problemMatcher": "$msCompile"
+            },
         }
     ]
 }

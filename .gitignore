@@ -6,6 +6,8 @@ extension_api.json
 
 .DS_Store
 
+# IDE local settings
+.vscode/settings.json
 .clangd
 compile_commands.json
 
@@ -14,3 +16,4 @@ game/gdextensions/**/bin/
 src/**/*.os
 src/**/*.obj
 *.dblite
+*.pdb
