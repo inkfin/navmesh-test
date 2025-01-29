@@ -1,6 +1,7 @@
 #ifndef GDEXAMPLE_H
 #define GDEXAMPLE_H
 
+#include "gdextension_helpers.h"
 #include "godot_cpp/classes/sprite2d.hpp"
 
 namespace godot {
@@ -9,10 +10,11 @@ class GDExample : public Sprite2D {
     GDCLASS(GDExample, Sprite2D)
 
 private:
-    double time_passed;
-    double time_emit;
-    Vector2 amplitude;
-    double speed;
+    double time_passed = 0.;
+    double time_emit = 0.;
+
+    DEFINE_PROPERTY(Vector2, amplitude, = Vector2(30.0, 10.0));
+    DEFINE_PROPERTY(double, speed, = 1.0);
 
 protected:
     static void _bind_methods();
@@ -24,13 +26,6 @@ public:
     void _process(double delta) override;
 
     String get_hello();
-
-    /* getter/setter */
-    void set_amplitude(const Vector2 p_amplitude);
-    Vector2 get_amplitude() const;
-
-    void set_speed(const double p_speed);
-    double get_speed() const;
 };
 
 }

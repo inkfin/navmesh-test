@@ -13,7 +13,7 @@ env = SConscript("godot-cpp/SConstruct")
 # - LINKFLAGS are for linking flags
 
 # tweak this if you want to use different folders, or more folders, to store your source code in.
-env.Append(CPPPATH=["src/gdexample", "src/navmesh_test"])
+env.Append(CPPPATH=["src/", "src/gdexample", "src/navmesh_test"])
 
 
 def get_library(name, sources):

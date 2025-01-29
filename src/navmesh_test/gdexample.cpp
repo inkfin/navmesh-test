@@ -10,32 +10,19 @@ void GDExample::_bind_methods()
 {
     ClassDB::bind_method(D_METHOD("get_hello"), &GDExample::get_hello);
 
-    ClassDB::bind_method(D_METHOD("get_amplitude"), &GDExample::get_amplitude);
-    ClassDB::bind_method(D_METHOD("set_amplitude", "p_amplitude"), &GDExample::set_amplitude);
+    BIND_SINGLE_PROPERTY(GDExample, Variant::VECTOR2, amplitude);
 
-    ADD_PROPERTY(PropertyInfo(Variant::VECTOR2, "amplitude"), "set_amplitude", "get_amplitude");
-
-    ClassDB::bind_method(D_METHOD("get_speed"), &GDExample::get_speed);
-    ClassDB::bind_method(D_METHOD("set_speed", "p_speed"), &GDExample::set_speed);
-
-    ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "speed", PROPERTY_HINT_RANGE, "0,20,0.01"), "set_speed", "get_speed");
+    BIND_SINGLE_PROPERTY_WITH_HINT(GDExample, Variant::FLOAT, speed, PROPERTY_HINT_RANGE, "0,20,0.01");
 
     ADD_SIGNAL(MethodInfo("position_changed", PropertyInfo(Variant::OBJECT, "node"), PropertyInfo(Variant::VECTOR2, "new_pos")));
 }
 
 GDExample::GDExample()
 {
-    // Initialize any variables here.
-    time_passed = 0.0;
-    time_emit = 0.0;
-    amplitude = Vector2(30.0, 10.0);
-    // amplitude = 10.0;
-    speed = 1.0;
 }
 
 GDExample::~GDExample()
 {
-    // Add your cleanup here.
 }
 
 void GDExample::_process(double delta)
@@ -55,26 +42,6 @@ void GDExample::_process(double delta)
 
         time_emit = 0.0;
     }
-}
-
-void GDExample::set_amplitude(const Vector2 p_amplitude)
-{
-    amplitude = p_amplitude;
-}
-
-Vector2 GDExample::get_amplitude() const
-{
-    return amplitude;
-}
-
-void GDExample::set_speed(const double p_speed)
-{
-    speed = p_speed;
-}
-
-double GDExample::get_speed() const
-{
-    return speed;
 }
 
 String GDExample::get_hello()
